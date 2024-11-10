@@ -13,11 +13,7 @@ const dispatch = useDispatch();
     e.preventDefault();
 
     if(title && content){
-        dispatch(postAdded({
-            id:nanoid(),
-            title: title,
-            content: content
-        }));
+        dispatch(postAdded(title, content));
 
         setTitle("");
         setContent("");
