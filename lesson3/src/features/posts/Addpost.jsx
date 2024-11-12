@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {postAdded} from "./postsSlice";
+import {addNewPost} from "./postsSlice";
 import { selectAllUsers } from "./UsersSlice";
 
 import { useState } from 'react'
@@ -10,6 +10,7 @@ const [title,setTitle] = useState("");
 const [content,setContent] = useState("");
 const users = useSelector(selectAllUsers);
 const [userId, setUserId] = useState("");
+const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
 
 const postCreators = users.map((creator)=> (
@@ -18,14 +19,28 @@ const postCreators = users.map((creator)=> (
   </option>
 ))
 
-const canSave = Boolean(title) && Boolean(content);
+const canSave = [title, content,userId].every(Boolean) && addRequestStatus === 'idle'
+
 
 const handleSubmit = (e)=>{
     e.preventDefault();
-    dispatch(postAdded(title,content, userId))
+    if(canSave) {
+      try {
+        setAddRequestStatus('pending')
+        dispatch(addNewPost({title,body: content, userId})).unwrap()
 
     setContent("");
     setTitle("");
+    setUserId("")
+        
+      } catch (error) {
+        console.error('failed to save the post')
+        
+      }finally{
+        setAddRequestStatus('idle')
+
+      }
+    }
 
 }
   return (
