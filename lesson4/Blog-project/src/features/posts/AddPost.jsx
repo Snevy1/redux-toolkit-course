@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postAdded } from "./PostsSlice";
-import { selectAllUsers } from "./UsersSlice";
+import { selectAllUsers } from "../users/UsersSlice"
 import { useDispatch, useSelector } from "react-redux";
 
  export const AddPost = () => {
