@@ -4,7 +4,7 @@ import ReactionButtons from "./ReactionButtons";
 
 const PostsExcerpt = ({post}) => {
   return (
-    <article>
+    <article >
         <h2>{post.title}</h2>
         <p>{post.body.substring(0,100)}</p>
         <ReactionButtons post={post}/>

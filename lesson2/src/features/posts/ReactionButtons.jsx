@@ -9,8 +9,6 @@ const reactionEmoji = {
     coffee: '☕'
 }
 
-import React from 'react'
-
 const ReactionButtons = ({post}) => {
     const dispatch = useDispatch()
 

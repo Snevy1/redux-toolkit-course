@@ -98,7 +98,6 @@ const initialState = {
                     coffee: 0
 
                 }
-
                 return post;
             })
 
